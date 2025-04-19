@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript</title>
+  </head>
+  <body>
+    <script>
+      // 1. Hoisting
+      console.log(hoist);
+      var hoist = "Hoisting Example";
+
+      // 2. Closures
+      function outer() {
+        let count = 0;
+        return function inner() {
+          count++;
+          return count;
+        };
+      }
+      const counter = outer();
+      console.log(counter());
+
+      // 3. Lexical Scope
+      const outerFunc = () => {
+        const a = 10;
+        const innerFunc = () => console.log(a);
+        innerFunc();
+      };
+      outerFunc();
+
+      // 4. Scope Chain
+      const globalVar = "Global";
+      function parent() {
+        const parentVar = "Parent";
+        function child() {
+          const childVar = "Child";
+          console.log(globalVar, parentVar, childVar);
+        }
+        child();
+      }
+      parent();
+
+      // 5. Execution Context
+      function execTest() {
+        const x = 5;
+        console.log("Inside Execution Context");
+      }
+      execTest();
+
+      // 6. Call Stack
+      function one() {
+        two();
+      }
+      function two() {
+        console.log("Call Stack Example");
+      }
+      one();
+
+      // 7. Block Scope vs Function Scope
+      {
+        let a = 10;
+        var b = 20;
+      }
+
+      console.log(b);
+
+      // 8. `this` keyword
+      const person = {
+        name: "Ali",
+        greet() {
+          console.log("Hello", this.name);
+        },
+      };
+      person.greet();
+
+      // 9. Implicit vs Explicit Binding
+      function sayHi() {
+        console.log(this.name);
+      }
+      const user = { name: "Sara" };
+      sayHi.call(user);
+
+      // 10. bind, call, apply
+      function greet(age) {
+        console.log(`${this.name} is ${age} years old`);
+      }
+      const p = { name: "Zain" };
+      greet.call(p, 25);
+      greet.apply(p, [25]);
+      const newGreet = greet.bind(p, 25);
+      newGreet();
+
+      // 11. Event Bubbling & 12. Delegation
+      document.body.addEventListener("click", () =>
+        console.log("Body clicked")
+      );
+      document.body.innerHTML += `<div id="parent"><button id="child">Click</button></div>`;
+      document.getElementById("parent").addEventListener("click", (e) => {
+        if (e.target.id === "child") alert("Delegation works!");
+      });
+
+      // 13. Custom Event
+      const event = new CustomEvent("myEvent", { detail: "Test" });
+      document.addEventListener("myEvent", (e) => console.log(e.detail));
+      document.dispatchEvent(event);
+
+      // 14. Debounce
+      function debounce(fn, delay) {
+        let timeout;
+        return function (...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => fn.apply(this, args), delay);
+        };
+      }
+
+      // 15. Throttle
+      function throttle(fn, limit) {
+        let inThrottle;
+        return function () {
+          if (!inThrottle) {
+            fn();
+            inThrottle = true;
+            setTimeout(() => (inThrottle = false), limit);
+          }
+        };
+      }
+
+      // 16. IIFE
+      (function () {
+        console.log("IIFE called");
+      })();
+
+      // 17. Currying
+      const multiply = (x) => (y) => x * y;
+      console.log(multiply(5)(3));
+
+      // 18. Pure Functions
+      function add(x, y) {
+        return x + y;
+      }
+
+      // 19. Memoization
+      const memo = {};
+      function fib(n) {
+        if (n in memo) return memo[n];
+        if (n <= 1) return n;
+        return (memo[n] = fib(n - 1) + fib(n - 2));
+      }
+
+      // 20. Higher-Order Function
+      const greetFunc = (name) => () => console.log("Hi", name);
+      const hiAli = greetFunc("Ali");
+      hiAli();
+
+      // 21. Recursion
+      function countDown(n) {
+        if (n === 0) return;
+        console.log(n);
+        countDown(n - 1);
+      }
+
+      // 22. Garbage Collection
+      let obj = { name: "test" };
+      obj = null;
+
+      // 23. WeakMap
+      let wm = new WeakMap();
+      let o = {};
+      wm.set(o, "secret");
+      console.log(wm.get(o));
+
+      // 24. WeakSet
+      let ws = new WeakSet();
+      let item = {};
+      ws.add(item);
+      console.log(ws.has(item));
+
+      // 25. Symbol
+      const sym = Symbol("id");
+      const obj2 = { [sym]: 123 };
+      console.log(obj2[sym]);
+
+      // 26. typeof vs instanceof
+      console.log(typeof []);
+      console.log([] instanceof Array);
+
+      // 27. Shallow vs Deep Copy
+      const original = { a: 1 };
+      const shallow = { ...original };
+
+      // 28. JSON Deep Clone
+      const deep = JSON.parse(JSON.stringify(original));
+
+      // 29. Polyfill
+      if (!Array.prototype.myMap) {
+        Array.prototype.myMap = function (cb) {
+          let result = [];
+          for (let i = 0; i < this.length; i++) {
+            result.push(cb(this[i], i, this));
+          }
+          return result;
+        };
+      }
+
+      // 30. Transpilers
+      // Babel converts modern JS to older JS
+
+      // 31. Prototype
+      function Animal() {}
+      Animal.prototype.eat = function () {
+        console.log("eating");
+      };
+
+      // 32. Inheritance
+      function Dog() {}
+      Dog.prototype = Object.create(Animal.prototype);
+      const d = new Dog();
+      d.eat();
+
+      // 33. Constructor Functions
+      function Car(brand) {
+        this.brand = brand;
+      }
+      const car = new Car("Honda");
+
+      // 34. Factory Function
+      function createUser(name) {
+        return { name };
+      }
+
+      // 35. Overloading (Custom)
+      function test() {
+        if (arguments.length === 1) console.log(arguments[0]);
+      }
+
+      // 36. Event Loop
+      console.log("Start");
+      setTimeout(() => console.log("Timeout"), 0);
+      Promise.resolve().then(() => console.log("Promise"));
+      console.log("End");
+
+      // 37. Microtasks vs Macrotasks
+      // setTimeout = macro, promise = micro
+
+      // 38. Web APIs
+      // console, fetch, alert, setTimeout are web APIs
+
+      // 39. Shadow DOM
+      const shadowHost = document.createElement("div");
+      const shadowRoot = shadowHost.attachShadow({ mode: "open" });
+      shadowRoot.innerHTML = `<p>Inside Shadow DOM</p>`;
+      document.body.appendChild(shadowHost);
+
+      // 40. Custom Elements
+      class HelloElement extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = "<b>Hello, Custom Element!</b>";
+        }
+      }
+      customElements.define("hello-el", HelloElement);
+      document.body.innerHTML += "<hello-el></hello-el>";
+
+      // 41. Intersection Observer
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => console.log(entry.isIntersecting));
+      });
+      const target = document.createElement("div");
+      document.body.appendChild(target);
+      obs.observe(target);
+
+      // 42. Mutation Observer
+      const mo = new MutationObserver(() => console.log("DOM changed"));
+      mo.observe(document.body, { childList: true });
+
+      // 43. History API
+      history.pushState({ page: 1 }, "title 1", "?page=1");
+
+      // 44. Navigator
+      console.log(navigator.userAgent);
+
+      // 45. Screen
+      console.log(screen.width, screen.height);
+
+      // 46. Geolocation API
+      navigator.geolocation.getCurrentPosition((pos) =>
+        console.log(pos.coords)
+      );
+
+      // 47. Clipboard API
+      // navigator.clipboard.writeText("Copied!");
+
+      // 48. Drag and Drop
+      // Implemented manually in project
+
+      // 49. File Reader API
+      // Skipped in console for brevity
+
+      // 50. sessionStorage
+      sessionStorage.setItem("key", "value");
+      console.log(sessionStorage.getItem("key"));
+      console.log(screen.width, screen.h);
+      // 51. for in loop
+      const book = {
+        title: "JavaScript Guide",
+        author: {
+          firstName: "John",
+          lastName: "Doe",
+        },
+      };
+      for (let key in book.author) {
+        console.log(`${key}: ${book.author[key]}`);
+      }
+
+      // 52. Map Function
+
+      const fruits = new Map();
+      fruits.set("apples", 500);
+      fruits.set("bananas", 300);
+      fruits.set("oranges", 200);
+    </script>
+
+
+
+
+</body>
+</html>

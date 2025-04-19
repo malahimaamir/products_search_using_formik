@@ -1,0 +1,542 @@
+<!-- +92 311 5120640 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My First Website</title>
+    <style>
+      /* ===================== GLOBAL STYLES ===================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #f0f4f8;
+        color: #333;
+      }
+
+      header {
+        background: #4a90e2;
+        padding: 20px 50px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: bold;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 100px 20px;
+        background: linear-gradient(to right, #4a90e2, #6bc1ff);
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        font-size: 1.2em;
+      }
+
+      footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        margin-top: 50px;
+      }
+
+      /* ========== TOPIC 1: BOX MODEL ========== */
+      .box-model {
+        margin: 30px;
+        padding: 20px;
+        border: 5px solid #4a90e2;
+        background: #e3f2fd;
+        width: 250px;
+      }
+
+      /* ========== TOPIC 2: FLEXBOX ========== */
+      .flexbox-container {
+        display: flex;
+        justify-content: space-around;
+        padding: 30px;
+        background: #d1ecf1;
+        margin: 20px;
+      }
+
+      .flex-item {
+        background: #4a90e2;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      /* ========== TOPIC 3: GRID ========== */
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 20px;
+        background: #fef9e7;
+      }
+
+      .grid-item {
+        background: #f9c74f;
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* ========== TOPIC 4: PSEUDO CLASSES ========== */
+      .pseudo-example a:hover {
+        color: green;
+        font-weight: bold;
+      }
+
+      .pseudo-example button:active {
+        background: red;
+        color: white;
+      }
+
+      /* ========== TOPIC 5: CSS VARIABLES ========== */
+      :root {
+        --main-bg: #ffcad4;
+        --main-text: #6d6875;
+      }
+
+      .variable-box {
+        background: var(--main-bg);
+        color: var(--main-text);
+        padding: 20px;
+        margin: 20px;
+        border-radius: 5px;
+      }
+      /* <!-- Topic: Display Property --> */
+      .block {
+        display: block;
+        background: #f4a261;
+        padding: 10px;
+        margin: 10px 0;
+      }
+
+      .inline {
+        display: inline;
+        background: #e76f51;
+        padding: 10px;
+        color: white;
+      }
+
+      .inline-block {
+        display: inline-block;
+        background: #2a9d8f;
+        padding: 10px;
+        color: white;
+      }
+
+      /* <!-- Topic: Flexbox --> */
+      .flex-container {
+        display: flex;
+        justify-content: space-around;
+        background: #264653;
+        padding: 20px;
+      }
+
+      .box {
+        background: #e9c46a;
+        padding: 20px;
+        color: #000;
+      }
+
+      /* <!-- Topic: Grid Layout --> */
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+      }
+
+      .grid-item {
+        background: #f94144;
+        padding: 20px;
+        color: white;
+        text-align: center;
+      }
+
+      /* <!-- Topic: Hover Effects --> */
+
+      .hover-btn {
+        background: #1d3557;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+      }
+
+      .hover-btn:hover {
+        background: #457b9d;
+        cursor: pointer;
+      }
+
+      /* <!-- Topic: Transition --> */
+
+      .transition-box {
+        background: #06d6a0;
+        padding: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .transition-box:hover {
+        background: #118ab2;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      /* <!-- Topic: Transform --> */
+
+      .transform-box {
+        background: #ffafcc;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.5s;
+      }
+
+      .transform-box:hover {
+        transform: rotate(10deg);
+      }
+
+      /* <!-- Topic: Animation --> */
+
+      .animate-box {
+        width: 100px;
+        height: 100px;
+        background: #9b5de5;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-30px);
+        }
+      }
+
+      /* <!-- Topic: Text Shadow --> */
+
+      .shadow-text {
+        color: #222;
+        text-shadow: 2px 2px 4px #aaa;
+      }
+
+      /* <!-- Topic: Box Shadow --> */
+      .box-shadow {
+        background: #00b4d8;
+        padding: 20px;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* <!-- Topic: Overflow --> */
+
+      .overflow-box {
+        width: 200px;
+        height: 60px;
+        overflow: auto;
+        background: #caf0f8;
+        padding: 10px;
+      }
+
+      /* <!-- Topic: Visibility --> */
+
+      .hidden-text {
+        visibility: hidden;
+      }
+
+      /* <!-- Topic: Opacity --> */
+
+      .opacity-box {
+        background: #ffd166;
+        padding: 20px;
+        opacity: 0.5;
+      }
+
+      /* <!-- Topic: Media Queries --> */
+
+      .responsive-text {
+        font-size: 24px;
+      }
+
+      @media (max-width: 600px) {
+        .responsive-text {
+          font-size: 16px;
+          color: red;
+        }
+      }
+
+      /* <!-- Topic: Position --> */
+
+      .relative-box {
+        position: relative;
+        top: 20px;
+        background: #2b9348;
+        padding: 20px;
+      }
+
+      .absolute-box {
+        position: absolute;
+        top: 100px;
+        left: 30px;
+        background: #ef476f;
+        padding: 20px;
+        color: white;
+      }
+
+      /* <!-- Topic: Z-Index --> */
+
+      .box-one,
+      .box-two {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        width: 150px;
+        height: 150px;
+      }
+
+      .box-one {
+        background: #ff595e;
+        z-index: 1;
+      }
+
+      .box-two {
+        background: #1982c4;
+        z-index: 2;
+      }
+
+      /* <!-- Topic: Cursor --> */
+      .pointer-btn {
+        padding: 10px;
+        cursor: pointer;
+        background: #00f5d4;
+        border: none;
+      }
+
+      /* <!-- Topic: List Style --> */
+
+      .custom-list {
+        list-style-type: square;
+        color: #6a4c93;
+      }
+
+      /* <!-- Topic: Table Styling --> */
+
+      .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .styled-table th,
+      .styled-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      .styled-table th {
+        background-color: #219ebc;
+        color: white;
+      }
+
+      /* <!-- Topic: Border Radius --> */
+
+      .rounded-box {
+        background: #e07a5f;
+        padding: 20px;
+        border-radius: 15px;
+        color: white;
+      }
+
+      /* <!-- Topic: Line Height --> */
+
+      .line-height {
+        line-height: 2;
+        background: #ffcad4;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--  Header -->
+    <header>
+      <h2>MyWebsite</h2>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <!--  Hero Section -->
+    <section class="hero">
+      <h1>Welcome to My First Website</h1>
+      <p>Beautiful. Simple. Yours.</p>
+    </section>
+
+    <!-- ========== TOPIC 1: BOX MODEL ========== -->
+    <section>
+      <h2 style="text-align: center; margin-top: 30px">Box Model Example</h2>
+      <div class="box-model">
+        This is a box with margin, padding, and border!
+      </div>
+    </section>
+
+    <!-- ========== TOPIC 2: FLEXBOX ========== -->
+    <section>
+      <h2 style="text-align: center">Flexbox Example</h2>
+      <div class="flexbox-container">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+      </div>
+    </section>
+
+    <!-- ========== TOPIC 3: GRID ========== -->
+    <section>
+      <h2 style="text-align: center">Grid Example</h2>
+      <div class="grid-container">
+        <div class="grid-item">A</div>
+        <div class="grid-item">B</div>
+        <div class="grid-item">C</div>
+      </div>
+    </section>
+
+    <!-- ========== TOPIC 4: PSEUDO CLASSES ========== -->
+    <section class="pseudo-example" style="text-align: center">
+      <h2>Pseudo Classes Example</h2>
+      <a href="#">Hover over this link</a><br /><br />
+      <button>Click this button</button>
+    </section>
+
+    <!-- ========== TOPIC 5: CSS VARIABLES ========== -->
+    <section>
+      <h2 style="text-align: center">CSS Variables Example</h2>
+      <div class="variable-box">This box is using CSS custom properties!</div>
+    </section>
+
+    <!-- Topic: Display Property -->
+    <div class="block">Block</div>
+    <span class="inline">Inline</span>
+    <div class="inline-block">Inline-Block</div>
+
+    <!-- Topic: Flexbox -->
+    <div class="flex-container">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+
+    <!-- Topic: Grid Layout -->
+    <div class="grid-container">
+      <div class="grid-item">A</div>
+      <div class="grid-item">B</div>
+      <div class="grid-item">C</div>
+    </div>
+
+    <!-- Topic: Hover Effects -->
+    <button class="hover-btn">Hover Me</button>
+
+    <!-- Topic: Transition -->
+    <div class="transition-box">Hover me</div>
+
+    <!-- Topic: Transform -->
+    <div class="transform-box">Rotate</div>
+
+    <!-- Topic: Animation -->
+    <div class="animate-box">Animate</div>
+
+    <!-- Topic: Text Shadow -->
+    <h2 class="shadow-text">Shadow Text</h2>
+
+    <!-- Topic: Box Shadow -->
+    <div class="box-shadow">Box Shadow</div>
+
+    <!-- Topic: Overflow -->
+    <div class="overflow-box">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur luctus.
+    </div>
+
+    <!-- Topic: Visibility -->
+    <p class="visible-text">I am visible</p>
+    <p class="hidden-text">I am hidden</p>
+
+    <!-- Topic: Opacity -->
+    <div class="opacity-box">Fade Out</div>
+
+    <!-- Topic: Media Queries -->
+    <p class="responsive-text">Resize the window</p>
+
+    <!-- Topic: Position -->
+    <div class="relative-box">Relative</div>
+    <div class="absolute-box">Absolute</div>
+
+    <!-- Topic: Z-Index -->
+    <div class="box-one">Box One</div>
+    <div class="box-two">Box Two</div>
+
+    <!-- Topic: Cursor -->
+    <button class="pointer-btn">Hover Me</button>
+
+    <!-- Topic: List Style -->
+    <ul class="custom-list">
+      <li>Item One</li>
+      <li>Item Two</li>
+    </ul>
+
+    <!-- Topic: Table Styling -->
+    <table class="styled-table">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+      <tr>
+        <td>Mala</td>
+        <td>17</td>
+      </tr>
+    </table>
+
+    <!-- Topic: Border Radius -->
+    <div class="rounded-box">Rounded Corners</div>
+
+    <!-- Topic: Line Height -->
+    <p class="line-height">
+      This is a paragraph with more space between lines to improve readability.
+    </p>
+
+    <!-- Footer -->
+    <footer>&copy; 2025 MyWebsite. All rights reserved.</footer>
+
+    <!-- Query Selector JavaScript -->
+    <script>
+      const links = document.querySelectorAll("a");
+      links.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          link.textContent = "You clicked the link!";
+          link.style.color = "red";
+          link.style.fontWeight = "italic";
+        });
+      });
+    </script>
+  </body>
+</html>

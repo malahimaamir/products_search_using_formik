@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>new topics</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 2rem;
+        background: #f9f9f9;
+      }
+      section {
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        background: #fff;
+      }
+      h2 {
+        margin-top: 0;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Topic 1: :has() Selector -->
+    <section id="has-selector">
+      <article>
+        <p>This article does not contain an image.</p>
+      </article>
+      <article>
+        <p>This article has an image.</p>
+        <img src="https://via.placeholder.com/100" alt="Sample" />
+      </article>
+      <style>
+        article:has(img) {
+          border: 2px solid green;
+          background-color: #eaffea;
+          padding: 1rem;
+          margin-bottom: 1rem;
+        }
+        article {
+          border: 2px solid #ccc;
+          padding: 1rem;
+          margin-bottom: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 2: Scroll Snap -->
+    <section id="scroll-snap">
+      <div class="scroll-container">
+        <div class="snap-item">Page 1</div>
+        <div class="snap-item">Page 2</div>
+        <div class="snap-item">Page 3</div>
+      </div>
+      <style>
+        .scroll-container {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          width: 100%;
+          gap: 1rem;
+        }
+        .snap-item {
+          scroll-snap-align: start;
+          min-width: 200px;
+          height: 100px;
+          background: lightblue;
+          text-align: center;
+          line-height: 100px;
+          border-radius: 10px;
+          flex: none;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 3: :is() Selector -->
+    <section id="is-selector">
+      <ul>
+        <li>Item 1</li>
+        <li class="highlight">Item 2</li>
+        <li class="highlight">Item 3</li>
+      </ul>
+      <style>
+        :is(li.highlight, p.special) {
+          background-color: #fffae6;
+          font-weight: bold;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 4: @layer -->
+    <section id="layer-demo">
+      <div class="layered-box">Layer Priority</div>
+      <style>
+        @layer base, override;
+
+        @layer base {
+          .layered-box {
+            background-color: lightgray;
+            padding: 1rem;
+          }
+        }
+
+        @layer override {
+          .layered-box {
+            background-color: tomato;
+            color: white;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- Topic 5: :where() -->
+    <section id="where-selector">
+      <div class="card">Card 1</div>
+      <div class="card special">Card 2</div>
+      <style>
+        :where(.special) {
+          background: lavender;
+          padding: 1rem;
+          border: 2px dashed purple;
+        }
+        .card {
+          margin-bottom: 1rem;
+          padding: 1rem;
+          background: #f0f0f0;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 6: Container Queries -->
+    <section id="container-queries">
+      <div class="container-box">
+        <div class="child-box">Resize Me!</div>
+      </div>
+      <style>
+        .container-box {
+          container-type: inline-size;
+          border: 2px solid #aaa;
+          padding: 1rem;
+          max-width: 300px;
+        }
+        .child-box {
+          background: #eee;
+          padding: 1rem;
+        }
+
+        @container (min-width: 250px) {
+          .child-box {
+            background-color: lightgreen;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- Topic 7: inset shorthand -->
+    <section id="inset-shorthand">
+      <div class="inset-box">I'm positioned with inset</div>
+      <style>
+        .inset-box {
+          position: absolute;
+          inset: 20px 40px 60px 80px;
+          background: lightcoral;
+          color: white;
+          padding: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 8: Viewport Units (lvw, svh) -->
+    <section id="viewport-units">
+      <div class="viewport-box">Resize the window</div>
+      <style>
+        .viewport-box {
+          width: 50lvw;
+          height: 30svh;
+          background: teal;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 9: env() Safe Area Inset -->
+    <section id="env-safe-area">
+      <div class="env-box">Padding from safe area</div>
+      <style>
+        .env-box {
+          padding: env(safe-area-inset-top) env(safe-area-inset-right)
+            env(safe-area-inset-bottom) env(safe-area-inset-left);
+          background: #ddd;
+          border: 1px solid #999;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 10: all + initial/unset/revert -->
+    <section id="all-shorthand">
+      <div class="default-style">Styled Normally</div>
+      <div class="reset-style">Reset using <code>all: unset</code></div>
+      <style>
+        .default-style {
+          font-size: 1.5rem;
+          color: darkblue;
+          padding: 1rem;
+          background: #eef;
+        }
+
+        .reset-style {
+          all: unset;
+          display: block;
+          border: 1px dashed gray;
+          margin-top: 1rem;
+          padding: 1rem;
+          font-size: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 11: Accent-color on Form Inputs -->
+    <section id="accent-color">
+      <label>
+        <input type="checkbox" checked />
+        Checkbox with Custom Accent
+      </label>
+      <style>
+        input[type="checkbox"] {
+          accent-color: crimson;
+          transform: scale(1.5);
+        }
+      </style>
+    </section>
+
+    <!-- Topic 12: Counter-increment / Counter-reset -->
+    <section id="counters">
+      <ol class="fancy-list">
+        <li>Item One</li>
+        <li>Item Two</li>
+        <li>Item Three</li>
+      </ol>
+      <style>
+        .fancy-list {
+          counter-reset: count;
+          list-style: none;
+          padding: 0;
+        }
+        .fancy-list li {
+          counter-increment: count;
+          margin: 0.5rem 0;
+        }
+        .fancy-list li::before {
+          content: "👉 " counter(count) " ";
+          font-weight: bold;
+          color: teal;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 13: Resize Property -->
+    <section id="resize-box">
+      <textarea class="resizable-box" rows="4" cols="40">
+You can resize me!</textarea
+      >
+      <style>
+        .resizable-box {
+          resize: both;
+          overflow: auto;
+          padding: 1rem;
+          font-size: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 14: Touch-action & Pointer Events -->
+    <section id="touch-pointer">
+      <button class="no-pointer">No Pointer Events</button>
+      <div class="touch-box">Try to scroll inside me</div>
+      <style>
+        .no-pointer {
+          pointer-events: none;
+          background: gray;
+          color: white;
+          padding: 1rem;
+        }
+        .touch-box {
+          width: 100%;
+          height: 100px;
+          overflow: scroll;
+          touch-action: pan-y;
+          background: lightgoldenrodyellow;
+          padding: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 15: Table Styling -->
+    <section id="table-style">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Aisha</td>
+            <td>17</td>
+          </tr>
+          <tr>
+            <td>Ali</td>
+            <td>18</td>
+          </tr>
+        </tbody>
+      </table>
+      <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          margin-top: 1rem;
+        }
+        th,
+        td {
+          border: 1px solid #ccc;
+          padding: 0.5rem;
+          text-align: left;
+        }
+        th {
+          background: #eee;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 16: Border Radius Variations -->
+    <section id="border-radius">
+      <div class="circle"></div>
+      <style>
+        .circle {
+          width: 100px;
+          height: 100px;
+          background: coral;
+          border-radius: 50%;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 17: Line Height Examples -->
+    <section id="line-height">
+      <p class="tight">This paragraph has tight line height.</p>
+      <p class="loose">This paragraph has loose line height.</p>
+      <style>
+        .tight {
+          line-height: 1;
+          background: #f0f0f0;
+        }
+        .loose {
+          line-height: 2;
+          background: #e0f7fa;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 18: Print Styles with @media print -->
+    <section id="print-style">
+      <p>
+        This section is visible on screen, but the red text will hide when
+        printed.
+      </p>
+      <p class="print-hide">You won't see me in print!</p>
+      <style>
+        .print-hide {
+          color: red;
+        }
+        @media print {
+          .print-hide {
+            display: none;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- Topic 19: Scroll-behavior Smooth -->
+    <section id="smooth-scroll">
+      <a href="#line-height">Scroll to Topic 17</a>
+      <style>
+        html {
+          scroll-behavior: smooth;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 20: Sticky Header (position: sticky) -->
+    <section id="sticky-header">
+      <div class="sticky-box">I'm sticky. Scroll down!</div>
+      <div style="height: 300px">Keep scrolling...</div>
+      <style>
+        .sticky-box {
+          position: sticky;
+          top: 0;
+          background: darkcyan;
+          color: white;
+          padding: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 21: Isolation & Stacking Context -->
+    <section id="isolation">
+      <div class="parent">
+        <div class="child">I’m isolated</div>
+      </div>
+      <style>
+        .parent {
+          isolation: isolate;
+          position: relative;
+          z-index: 1;
+          background: lightyellow;
+          padding: 1rem;
+        }
+        .child {
+          position: absolute;
+          z-index: 2;
+          background: crimson;
+          color: white;
+          padding: 0.5rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 22: Contain Property -->
+    <section id="contain-layout">
+      <div class="contained-box">Im contained</div>
+      <style>
+        .contained-box {
+          contain: layout;
+          width: 100px;
+          height: 100px;
+          background: lightcoral;
+          color: white;
+          padding: 0.5rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 23: Object-fit & Object-position -->
+    <section id="object-fit-position">
+      <img class="fit-img" src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?cs=srgb&dl=pexels-pixabay-147411.jpg&fm=jpg" />
+      <style>
+        .fit-img {
+          width: 200px;
+          height: 100px;
+          object-fit: cover;
+          object-position: top;
+          border: 2px solid #000;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 24: Aspect Ratio -->
+    <section id="aspect-ratio">
+      <div class="ratio-box">16:9 Box</div>
+      <style>
+        .ratio-box {
+          aspect-ratio: 16 / 9;
+          width: 100%;
+          background: #90caf9;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 25: Writing Modes -->
+    <section id="writing-mode">
+      <div class="vertical-text">Vertical Text</div>
+      <style>
+        .vertical-text {
+          writing-mode: vertical-rl;
+          background: lightgreen;
+          padding: 1rem;
+          height: 150px;
+          font-weight: bold;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 26: Column Layout -->
+    <section id="multi-column">
+      <div class="columns">
+        This is a multi-column layout. Text will flow from one column to the
+        next. You can use it for newspapers or blogs.
+      </div>
+      <style>
+        .columns {
+          column-count: 2;
+          column-gap: 2rem;
+          background: lavenderblush;
+          padding: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 27: Text Overflow (Ellipsis) -->
+    <section id="text-ellipsis">
+      <div class="ellipsis-box">
+        This text is too long and will be truncated with an ellipsis at the end.
+      </div>
+      <style>
+        .ellipsis-box {
+          width: 250px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          border: 1px solid #ccc;
+          padding: 0.5rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 28: Word Wrap & Word Break -->
+    <section id="word-wrap-break">
+      <div class="break-text">
+        ThisIsAReallyLongWordThatWillBreakToAvoidOverflow
+      </div>
+      <style>
+        .break-text {
+          width: 200px;
+          word-break: break-all;
+          border: 1px solid black;
+          padding: 0.5rem;
+          background: lightpink;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 29: White Space -->
+    <section id="white-space">
+      <div class="whitespace-box">This sentence has extra spacing.</div>
+      <style>
+        .whitespace-box {
+          white-space: pre;
+          background: #e3f2fd;
+          border: 1px dashed blue;
+          padding: 0.5rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 30: Clip-path -->
+    <section id="clip-path">
+      <div class="clip-star"></div>
+      <style>
+        .clip-star {
+          width: 150px;
+          height: 150px;
+          background: gold;
+          clip-path: polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%
+          );
+        }
+      </style>
+    </section>
+
+    <!-- Topic 31: Filter Effects -->
+    <section id="filter-effects">
+      <img
+        class="filter-img"
+        src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?cs=srgb&dl=pexels-pixabay-147411.jpg&fm=jpg"
+      />
+      <style>
+        .filter-img {
+          filter: blur(2px) grayscale(70%);
+          border: 2px solid black;
+          width: 200px;
+          height: 200px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 32: Mix-blend-mode -->
+    <section id="mix-blend">
+      <div class="blend-container">
+        <img
+          src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?cs=srgb&dl=pexels-pixabay-147411.jpg&fm=jpg"
+        />
+        <p>Text Overlap</p>
+      </div>
+      <style>
+        .blend-container {
+          position: relative;
+          background: yellow;
+          width: 150px;
+          height: 150px;
+        }
+        .blend-container img {
+          width: 100%;
+          height: 100%;
+          mix-blend-mode: multiply;
+        }
+        .blend-container p {
+          position: absolute;
+          top: 50%;
+          left: 10%;
+          color: red;
+          font-size: 1.2rem;
+          mix-blend-mode: screen;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 33: calc(), min(), max(), clamp() -->
+    <section id="calc-clamp">
+      <div class="calc-box">Responsive Box</div>
+      <style>
+        .calc-box {
+          width: calc(100% - 40px);
+          height: clamp(100px, 10vw, 200px);
+          background: lightblue;
+          margin: 1rem auto;
+          text-align: center;
+          line-height: 100px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 34: Scroll Behavior -->
+    <section id="scroll-behavior">
+      <a href="#bottom-scroll">Scroll to Bottom</a>
+      <div style="height: 300px"></div>
+      <div id="bottom-scroll">Bottom Reached!</div>
+      <style>
+        html {
+          scroll-behavior: smooth;
+        }
+        #bottom-scroll {
+          background: lightgreen;
+          padding: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 35: Sticky Position -->
+    <section id="sticky">
+      <div class="sticky-header">I stick to top when scrolling!</div>
+      <div style="height: 300px"></div>
+      <style>
+        .sticky-header {
+          position: sticky;
+          top: 0;
+          background: orange;
+          padding: 1rem;
+          z-index: 999;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 36: Accent-color -->
+    <section id="accent-color">
+      <input type="checkbox" checked />
+      <input type="range" />
+      <style>
+        input {
+          accent-color: crimson;
+          margin: 0.5rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 37: Counter-increment / Counter-reset -->
+    <section id="counter-list">
+      <ol class="custom-counter">
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+      </ol>
+      <style>
+        .custom-counter {
+          counter-reset: item;
+          list-style: none;
+        }
+        .custom-counter li::before {
+          counter-increment: item;
+          content: "Custom " counter(item) ": ";
+          color: darkblue;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 38: Resize Property -->
+    <section id="resize-box">
+      <textarea class="resizable">Resize Me!</textarea>
+      <style>
+        .resizable {
+          resize: both;
+          overflow: auto;
+          padding: 0.5rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 39: Touch-action & Pointer Events -->
+    <section id="touch-pointer">
+      <div class="no-pointer">I can’t be clicked</div>
+      <div class="touch-none">Touch Disabled</div>
+      <style>
+        .no-pointer {
+          pointer-events: none;
+          background: #f88;
+          padding: 1rem;
+        }
+        .touch-none {
+          touch-action: none;
+          background: #aaa;
+          padding: 1rem;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 40: Table Styling -->
+    <section id="styled-table">
+      <table class="styled">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+        <tr>
+          <td>Ali</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>Sara</td>
+          <td>19</td>
+        </tr>
+      </table>
+      <style>
+        .styled {
+          border-collapse: collapse;
+          width: 100%;
+          background: #eef;
+        }
+        .styled td,
+        .styled th {
+          border: 1px solid #999;
+          padding: 8px;
+          text-align: center;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 41: User Select -->
+    <section>
+      <p class="no-select">You can't select this text!</p>
+      <style>
+        .no-select {
+          user-select: none;
+          background: #dff;
+          padding: 10px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 42: Scroll Snap -->
+    <section>
+      <div class="snap-container">
+        <div class="snap-item">1</div>
+        <div class="snap-item">2</div>
+        <div class="snap-item">3</div>
+      </div>
+      <style>
+        .snap-container {
+          height: 150px;
+          overflow-y: scroll;
+          scroll-snap-type: y mandatory;
+        }
+        .snap-item {
+          scroll-snap-align: start;
+          height: 150px;
+          font-size: 2rem;
+          text-align: center;
+          background: #cfc;
+          border-bottom: 1px solid #999;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 43: Inline Block -->
+    <section>
+      <div class="inline-block">Box 1</div>
+      <div class="inline-block">Box 2</div>
+      <style>
+        .inline-block {
+          display: inline-block;
+          width: 100px;
+          height: 100px;
+          background: #fcc;
+          text-align: center;
+          line-height: 100px;
+          margin: 5px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 44: Aspect-ratio (without repeat) using iframe -->
+    <section>
+      <div class="aspect-container">
+        <iframe src="https://example.com" title="Demo"></iframe>
+      </div>
+      <style>
+        .aspect-container {
+          aspect-ratio: 16 / 9;
+          border: 2px solid #000;
+        }
+        .aspect-container iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 45: Shape Outside -->
+    <section>
+      <div class="float-img"></div>
+      <p class="shape-text">
+        This text wraps around a shape using shape-outside property. It only
+        works when the element is floated and has a defined shape like a circle
+        or polygon.
+      </p>
+      <style>
+        .float-img {
+          float: left;
+          shape-outside: circle(50%);
+          clip-path: circle(50%);
+          width: 150px;
+          height: 150px;
+          background: #fcf;
+          margin: 10px;
+        }
+        .shape-text {
+          line-height: 1.5;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 46: Writing Direction -->
+    <section>
+      
+      <p class="rtl">This text goes right to left</p>
+      <style>
+        .rtl {
+          direction: rtl;
+          unicode-bidi: bidi-override;
+          background: #eef;
+          padding: 10px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 47: Appearance Property -->
+    <section>
+      <input class="no-appearance" type="checkbox" />
+      <style>
+        .no-appearance {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #333;
+          background: #eee;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 48: Backdrop-filter -->
+    <section>
+      <div class="backdrop">
+        <p>Text above blurred background</p>
+      </div>
+      <style>
+        .backdrop {
+          backdrop-filter: blur(10px);
+          background: rgba(255, 255, 255, 0.4);
+          padding: 20px;
+          border: 1px solid #999;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 49: Forced Colors Mode (system color support) -->
+    <section>
+      
+      <div class="forced-color-box">System Aware Box</div>
+      <style>
+        @media (forced-colors: active) {
+          .forced-color-box {
+            forced-color-adjust: none;
+            background: ButtonFace;
+            color: ButtonText;
+            border: 2px solid ButtonText;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- Topic 50: Inline Style Example -->
+    <section>
+      
+      <div style="color: red; background: #eee; padding: 10px">
+        This is styled directly using inline CSS!
+      </div>
+    </section>
+
+    <!-- Topic 51: Visibility Hidden vs. Display None Comparison -->
+    <section>
+      
+      <div class="hidden-box">I'm hidden using visibility</div>
+      <div class="none-box">I'm removed using display</div>
+      <style>
+        .hidden-box {
+          visibility: hidden;
+          background: #def;
+          padding: 10px;
+        }
+        .none-box {
+          display: none;
+          background: #fed;
+          padding: 10px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 52: Empty Cells in Table -->
+    <section>
+      
+      <table border="1" class="empty-cells-table">
+        <tr>
+          <td>Cell 1</td>
+          <td></td>
+        </tr>
+      </table>
+      <style>
+        .empty-cells-table {
+          empty-cells: show;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 53: List Counter with Custom Content -->
+    <section>
+      
+      <ol class="custom-counter">
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+      </ol>
+      <style>
+        .custom-counter {
+          list-style: none;
+          counter-reset: my-counter;
+        }
+        .custom-counter li {
+          counter-increment: my-counter;
+        }
+        .custom-counter li::before {
+          content: "👉 " counter(my-counter) " - ";
+        }
+      </style>
+    </section>
+
+    <!-- Topic 54: Clip Property -->
+    <section>
+      
+      <div class="clip-box"></div>
+      <style>
+        .clip-box {
+          position: absolute;
+          clip: rect(0px, 60px, 60px, 0px);
+          width: 100px;
+          height: 100px;
+          background: #fdd;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 55: Text Decoration Styling -->
+    <section>
+      
+      <p class="styled-decoration">This text has wavy underline</p>
+      <style>
+        .styled-decoration {
+          text-decoration: underline wavy red;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 56: Isolation (not stacking context) -->
+    <section>
+      
+      <div class="isolate-box">
+        <div class="inner-blend">Isolated Layer</div>
+      </div>
+      <style>
+        .isolate-box {
+          isolation: isolate;
+          background: #ccc;
+          padding: 20px;
+        }
+        .inner-blend {
+          mix-blend-mode: multiply;
+          background: yellow;
+          color: blue;
+          padding: 10px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 57: Writing-mode vertical-rl -->
+    <section>
+      
+      <p class="vertical-text">Vertical RL Text</p>
+      <style>
+        .vertical-text {
+          writing-mode: vertical-rl;
+          background: #eee;
+          padding: 10px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 58: Selection Styling -->
+    <section>
+      
+      <p class="select-text">
+        Try selecting this text to see custom highlight!
+      </p>
+      <style>
+        .select-text::selection {
+          background: gold;
+          color: black;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 59: Marker Styling -->
+    <section>
+      
+      <ul class="marker-style">
+        <li>First</li>
+        <li>Second</li>
+      </ul>
+      <style>
+        .marker-style li::marker {
+          color: red;
+          font-size: 1.5rem;
+          content: "✓ ";
+        }
+      </style>
+    </section>
+
+    <!-- Topic 60: Forced Contrast Mode Awareness -->
+    <section>
+      
+      <div class="contrast-aware">
+        This element adapts to forced contrast mode
+      </div>
+      <style>
+        @media (forced-colors: active) {
+          .contrast-aware {
+            color: ButtonText;
+            background: ButtonFace;
+            forced-color-adjust: none;
+            padding: 10px;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- Topic 61: User Select Property -->
+    <section>
+      
+      <p class="no-select">You can't select this text!</p>
+      <style>
+        .no-select {
+          user-select: none;
+          background: #f0f0f0;
+          padding: 10px;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 62: Print Media Styling -->
+    <section>
+      
+      <p class="print-text">This will only show in print view.</p>
+      <style>
+        @media print {
+          .print-text {
+            display: block;
+            color: green;
+            font-weight: bold;
+          }
+        }
+        .print-text {
+          display: none;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 63: Appearance Property -->
+    <section>
+      
+      <input type="checkbox" class="custom-checkbox" />
+      <style>
+        .custom-checkbox {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          background: gray;
+          border-radius: 4px;
+        }
+        .custom-checkbox:checked {
+          background: green;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 64: Inset Property (shorthand for top/right/bottom/left) -->
+    <section>
+      <div class="inset-box">Inset Box</div>
+      <style>
+        .inset-box {
+          position: absolute;
+          inset: 30px 10px;
+          background: lightblue;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 65: All Property Reset -->
+    <section>
+    
+      <div class="all-reset">This text has all CSS reset.</div>
+      <style>
+        .all-reset {
+          all: unset;
+          font-size: 16px;
+          color: darkred;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 66: Nav Navigation Using Inline Style -->
+    <section>
+      <nav>
+        <a href="#" style="text-decoration: none; margin-right: 10px">Home</a>
+        <a href="#" style="text-decoration: none; margin-right: 10px">About</a>
+        <a href="#" style="text-decoration: none">Contact</a>
+      </nav>
+    </section>
+
+    <!-- Topic 67: Aspect-Ratio With Image -->
+    <section>
+      <div class="aspect-box">
+        <img src="https://via.placeholder.com/100" alt="sample" />
+      </div>
+      <style>
+        .aspect-box {
+          aspect-ratio: 1 / 1;
+          width: 200px;
+        }
+        .aspect-box img {
+          width: 100%;
+          height: auto;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 68: Logical Properties (e.g., margin-block) -->
+    <section>
+      <p class="logical-box">
+        This paragraph uses margin-block and padding-inline.
+      </p>
+      <style>
+        .logical-box {
+          margin-block: 10px;
+          padding-inline: 20px;
+          border: 1px dashed #aaa;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 69: Font Smoothing -->
+    <section>
+      <p class="smooth-font">
+        This text has smoother appearance on supported systems.
+      </p>
+      <style>
+        .smooth-font {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      </style>
+    </section>
+
+    <!-- Topic 70: CSS Scrollbar Styling (Webkit Browsers) -->
+    <section>
+      <div class="scroll-box">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac erat
+        id justo facilisis...
+      </div>
+      <style>
+        .scroll-box {
+          width: 250px;
+          height: 80px;
+          overflow: auto;
+          border: 1px solid #ccc;
+        }
+        .scroll-box::-webkit-scrollbar {
+          width: 8px;
+        }
+        .scroll-box::-webkit-scrollbar-thumb {
+          background: #999;
+          border-radius: 4px;
+        }
+      </style>
+    </section>
+  </body>
+</html>
